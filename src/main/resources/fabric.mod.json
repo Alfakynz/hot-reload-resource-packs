@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "hot_reload_resource_packs",
+	"version": "${version}",
+	"name": "Hot-Reload Resource Packs",
+	"description": "Reloads resource packs when changes to the resourcepacks folder are made.",
+	"authors": [
+		"carterisonline <me@carteris.online>"
+	],
+	"contact": {
+		"homepage": "https://github.com/carterisonline/hot-reload-resource-packs",
+		"sources": "https://github.com/carterisonline/hot-reload-resource-packs"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/hot_reload_resource_packs/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"online.carteris.hot_reload_resource_packs.HotReloadResourcePacks"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.13.0",
+		"minecraft": ">=1.18",
+		"java": ">=17"
+	}
+}
