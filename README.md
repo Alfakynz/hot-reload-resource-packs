@@ -26,9 +26,20 @@
 | 1.20.4    | ✅     | ✅    | ❌       | ✅    |
 | 1.20.5    | ✅     | ❌    | ❌       | ✅    |
 | 1.20.6    | ✅     | ❌    | ❌       | ✅    |
-| 1.21.x    | ✅     | ❌    | ❌       | ✅    |
+| 1.21.1    | ✅     | ❌    | ✅       | ✅    |
+| 1.21.2    | ✅     | ❌    | ✅       | ✅    |
+| 1.21.3    | ✅     | ❌    | ✅       | ✅    |
+| 1.21.4    | ✅     | ❌    | ✅       | ✅    |
+| 1.21.5    | ✅     | ❌    | ✅       | ✅    |
+| 1.21.6    | ✅     | ❌    | ✅       | ✅    |
+| 1.21.7    | ✅     | ❌    | ✅       | ✅    |
+| 1.21.8    | ✅     | ❌    | ✅       | ✅    |
+| 1.21.9    | ✅     | ❌    | ❌       | ✅    |
+| 1.21.10   | ✅     | ❌    | ❌       | ✅    |
+| 1.21.11   | ✅     | ❌    | ❌       | ✅    |
 
 Fabric >= 0.13.0 <br />
+NeoForge >= 21.1.219 <br />
 Forge >= 47.0.19
 
 # ⬇️ Installation
@@ -39,6 +50,7 @@ Forge >= 47.0.19
 ## 🙏 Credits
 
 - Thanks to [carterisonline](https://modrinth.com/user/161u4TUg) for the original [mod](https://modrinth.com/project/8xOCApGi)
+- Thanks to [johndrinkwater](https://github.com/johndrinkwater) for the PR [#1](https://github.com/carterisonline/hot-reload-resource-packs/pull/1) that prevented reloadResources() twice
 
 ## 🤝 Contributing
 
