@@ -2,7 +2,7 @@ package online.carteris.hot_reload_resource_packs;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,11 +14,11 @@ public class HotReloadResourcePacks implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     static HotReloader hot_reloader;
-    static MinecraftClient client;
+    static Minecraft client;
 
     @Override
     public void onInitialize() {
-        client = MinecraftClient.getInstance();
+        client = Minecraft.getInstance();
 
         var resource_packs_path = getResourcePacksPath();
 

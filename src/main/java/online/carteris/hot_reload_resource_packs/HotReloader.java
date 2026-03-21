@@ -1,6 +1,6 @@
 package online.carteris.hot_reload_resource_packs;
 
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -10,7 +10,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 public class HotReloader extends Thread {
     static Logger logger;
-    static MinecraftClient minecraft_client;
+    static Minecraft minecraft_client;
     static Path resource_packs_path;
     static long recent_ping;
 
@@ -72,7 +72,7 @@ public class HotReloader extends Thread {
             recent_ping = System.currentTimeMillis();
 
             if (reload) {
-                minecraft_client.reloadResources();
+                minecraft_client.reloadResourcePacks();
             }
 
         } catch (InterruptedException e) {
@@ -115,7 +115,7 @@ public class HotReloader extends Thread {
         }
     }
 
-    public HotReloader(MinecraftClient minecraft_client, Logger logger, Path resource_packs_path) {
+    public HotReloader(Minecraft minecraft_client, Logger logger, Path resource_packs_path) {
         super();
 
         HotReloader.minecraft_client = minecraft_client;
