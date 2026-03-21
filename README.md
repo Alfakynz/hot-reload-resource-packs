@@ -50,6 +50,7 @@ Forge >= 47.0.19
 ## 🙏 Credits
 
 - Thanks to [carterisonline](https://modrinth.com/user/161u4TUg) for the original [mod](https://modrinth.com/project/8xOCApGi)
+- Thanks to [johndrinkwater](https://github.com/johndrinkwater) for the PR [#1](https://github.com/carterisonline/hot-reload-resource-packs/pull/1) that prevented reloadResources() twice
 
 ## 🤝 Contributing
 
