@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version "${loom_version}"
+	id 'net.neoforged.moddev.legacyforge' version '2.0.77'
 	id 'maven-publish'
 }
 
@@ -14,13 +14,36 @@ repositories {
 
 }
 
-dependencies {
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
+legacyForge {
+	version = "${minecraft_version}-${loader_version}"
 
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
+	validateAccessTransformers = true
+
+	def at = file('src/main/resources/META-INF/accesstransformer.cfg')
+	if (at.exists()) {
+		accessTransformers = ["src/main/resources/META-INF/accesstransformer.cfg"]
+	}
+
+	parchment {
+		minecraftVersion = minecraft_version
+		mappingsVersion = parchment_version
+	}
+
+	runs {
+		client {
+			client()
+		}
+	}
+
+	mods {
+		"${mod_id}" {
+			sourceSet sourceSets.main
+		}
+	}
+}
+
+dependencies {
+	compileOnly 'org.jetbrains:annotations:24.0.0'
 }
 
 processResources {
@@ -35,7 +58,7 @@ processResources {
 
 	inputs.properties replaceProperties
 
-	filesMatching('fabric.mod.json') {
+	filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
 		expand replaceProperties
 	}
 }
