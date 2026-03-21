@@ -1,4 +1,4 @@
-# 🔃 Hot-Reload Resource Packs 📦
+# 🔃 Hot-Reload Resource Packs Forked 📦
 
 [![fabric](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_64h.png)](https://fabricmc.net/)
 [![quilt](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/quilt_64h.png)](https://quiltmc.org/)
@@ -6,13 +6,15 @@
 [![neoforge](https://raw.githubusercontent.com/intergrav/devins-badges/8494ec1ac495cfb481dc7e458356325510933eb0/assets/cozy/supported/neoforge_64h.png)](https://neoforged.net/)
 
 [![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_64h.png)](https://github.com/Alfakynz/hot-reload-resource-packs)
-[![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_64h.png)](https://modrinth.com/project/sAdB6HVW)
-[![curseforge](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_64h.png)](https://www.curseforge.com/minecraft/mc-mods/no-more-popups)
+[![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_64h.png)](https://modrinth.com/project/KsOce7sT)
+[![curseforge](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_64h.png)](https://www.curseforge.com/minecraft/mc-mods/hot-reload-resource-packs-forked)
 [![discord-plural](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-plural_64h.png)](https://discord.gg/TcmUQHZ5U4)
 
 ## ✨ Features
 
-- Reloads resource packs when changes to the resourcepacks folder are made.
+- Reloads resource packs when changes to the resourcepacks folder are made. (Original mod)
+- Prevents reloadResources() twice
+- Ported to Forge and NeoForge
 
 ## 🔄 Versions
 
