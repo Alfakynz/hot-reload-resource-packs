@@ -12,8 +12,8 @@
 
 ## ✨ Features
 
-- Reloads resource packs when changes to the resourcepacks folder are made. (Original mod)
-- Prevents reloadResources() twice
+- Reloads resource packs when changes to the resourcepacks folder are made (from the original [mod](https://modrinth.com/project/8xOCApGi)). 
+- Prevents reloadResources() twice on Linux and macOS
 - Ported to Forge and NeoForge
 
 ## 🔄 Versions
