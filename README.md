@@ -46,7 +46,7 @@ Forge >= 47.0.19
 
 # ⬇️ Installation
 
-1. Download the mod from [Modrinth](https://modrinth.com/project/sAdB6HVW) or [CurseForge](https://www.curseforge.com/minecraft/mc-mods/no-more-popups)
+1. Download the mod from [Modrinth](https://modrinth.com/project/KsOce7sT) or [CurseForge](https://www.curseforge.com/minecraft/mc-mods/hot-reload-resource-packs-forked)
 2. Place it into your `mods` directory
 
 ## 🙏 Credits
