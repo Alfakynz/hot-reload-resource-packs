@@ -34,7 +34,7 @@ public class HotReloadResourcePacks implements ModInitializer {
         }
 
         // should be <minecraft location>/mods/hot_reload_resource_packs-x.y.z.jar
-        var mod_location = mod_container.get().getOrigin().getPaths().get(0);
+        var mod_location = mod_container.get().getOrigin().getPaths().getFirst();
 
         // go upwards from our jarfile to mods folder, up again to minecraft folder, then down to resourcepacks.
         return mod_location.getParent().getParent().resolve("resourcepacks");
