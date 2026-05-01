@@ -12,7 +12,7 @@
 
 ## ✨ Features
 
-- Reloads resource packs when changes to the resourcepacks folder are made (from the original [mod](https://modrinth.com/project/8xOCApGi)). 
+- Reloads resource packs when changes to the resourcepacks folder are made (from the original [mod](https://modrinth.com/project/8xOCApGi)).
 - Prevents reloadResources() twice on Linux and macOS
 - Ported to Forge and NeoForge
 
@@ -39,9 +39,10 @@
 | 1.21.9    | ✅     | ❌    | ❌       | ✅    |
 | 1.21.10   | ✅     | ❌    | ❌       | ✅    |
 | 1.21.11   | ✅     | ❌    | ❌       | ✅    |
+| 26.1.x    | ✅     | ❌    | ✅       | ❌    |
 
-Fabric >= 0.13.0 <br />
-NeoForge >= 21.1.219 <br />
+Fabric >= 0.13.0 / 0.18.4 <br />
+NeoForge >= 21.1.219 / 26.1.0.1-beta <br />
 Forge >= 47.0.19
 
 # ⬇️ Installation
