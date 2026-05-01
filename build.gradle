@@ -1,5 +1,5 @@
 plugins {
-	id 'net.neoforged.moddev' version '2.0.140'
+	id 'net.neoforged.moddev' version '2.0.141'
 	id 'maven-publish'
 }
 
@@ -10,18 +10,9 @@ base {
 	archivesName = project.archives_base_name + "-neoforge"
 }
 
-repositories {
-
-}
-
 neoForge {
 	// Specify the version of NeoForge to use.
 	version = project.loader_version
-
-	parchment {
-		mappingsVersion = project.parchment_version
-		minecraftVersion = project.minecraft_version
-	}
 
 	// This line is optional. Access Transformers are automatically detected
 	// accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
@@ -66,7 +57,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+	it.options.release = 25
 }
 
 java {
@@ -74,11 +65,11 @@ java {
 	withJavadocJar()
 
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(25)
 	}
 
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
 }
 
 jar {

@@ -10,7 +10,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 public class HotReloader extends Thread {
     static Logger logger;
-    static Minecraft minecraft_client;
     static Path resource_packs_path;
     static long recent_ping;
 
@@ -72,7 +71,12 @@ public class HotReloader extends Thread {
             recent_ping = System.currentTimeMillis();
 
             if (reload) {
-                minecraft_client.reloadResourcePacks();
+                Minecraft mc = Minecraft.getInstance();
+                if (mc != null) {
+                    mc.reloadResourcePacks();
+                } else {
+                    logger.warn("Minecraft client not ready yet, skipping reload");
+                }
             }
 
         } catch (InterruptedException e) {
@@ -115,10 +119,8 @@ public class HotReloader extends Thread {
         }
     }
 
-    public HotReloader(Minecraft minecraft_client, Logger logger, Path resource_packs_path) {
+    public HotReloader(Logger logger, Path resource_packs_path) {
         super();
-
-        HotReloader.minecraft_client = minecraft_client;
         HotReloader.resource_packs_path = resource_packs_path;
         HotReloader.logger = logger;
     }

@@ -4,7 +4,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.loading.FMLPaths;
-import net.minecraft.client.Minecraft;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,15 +15,11 @@ public class HotReloadResourcePacks {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     static HotReloader hot_reloader;
-    static Minecraft client;
 
     public HotReloadResourcePacks() {
-        if (FMLEnvironment.dist == Dist.CLIENT) {
-            client = Minecraft.getInstance();
-
+        if (FMLEnvironment.getDist() == Dist.CLIENT) {
             Path resourcePacksPath = getResourcePacksPath();
-
-            hot_reloader = new HotReloader(client, LOGGER, resourcePacksPath);
+            hot_reloader = new HotReloader(LOGGER, resourcePacksPath);
             hot_reloader.start();
         }
     }
