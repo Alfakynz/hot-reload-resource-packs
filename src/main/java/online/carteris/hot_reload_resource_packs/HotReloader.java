@@ -1,6 +1,8 @@
 package online.carteris.hot_reload_resource_packs;
 
+import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -13,6 +15,8 @@ public class HotReloader extends Thread {
     static Minecraft minecraft_client;
     static Path resource_packs_path;
     static long recent_ping;
+    public static long lastResourcifyCloseTime = 0;
+    private static final long RESOURCIFY_COOLDOWN_MS = 3000;
 
     public void run() {
         logger.info("Watching for changes in {}", resource_packs_path);
@@ -72,13 +76,26 @@ public class HotReloader extends Thread {
             recent_ping = System.currentTimeMillis();
 
             if (reload) {
-                minecraft_client.reloadResourcePacks();
+                boolean resourcifyRecentlyOpen =
+                        (System.currentTimeMillis() - lastResourcifyCloseTime) < RESOURCIFY_COOLDOWN_MS;
+
+                if (!isResourcifyScreen(minecraft_client.screen) && !resourcifyRecentlyOpen) {
+                    minecraft_client.reloadResourcePacks();
+                }
             }
 
         } catch (InterruptedException e) {
             logger.error("Got interrupted while trying to wait for file changes");
             throw new RuntimeException(e);
         }
+    }
+
+    private static boolean isResourcifyScreen(Screen screen) {
+        if (screen == null) return false;
+        String name = screen.getClass().getName();
+        return name.equals("dev.dediamondpro.resourcify.gui.projectpage.ProjectScreen")
+                || name.equals("dev.dediamondpro.resourcify.gui.browsepage.BrowseScreen")
+                || name.equals("dev.dediamondpro.resourcify.gui.update.UpdateGui");
     }
 
     void handleFileEvent(WatchService watch_service, WatchKey watch_key, WatchEvent<?> event) {
@@ -117,6 +134,12 @@ public class HotReloader extends Thread {
 
     public HotReloader(Minecraft minecraft_client, Logger logger, Path resource_packs_path) {
         super();
+
+        ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
+            if (isResourcifyScreen(client.screen)) {
+                lastResourcifyCloseTime = System.currentTimeMillis();
+            }
+        });
 
         HotReloader.minecraft_client = minecraft_client;
         HotReloader.resource_packs_path = resource_packs_path;

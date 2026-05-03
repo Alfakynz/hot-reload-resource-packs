@@ -7,7 +7,7 @@ version = project.mod_version
 group = project.maven_group
 
 base {
-	archivesName = project.archives_base_name + "-fabric"
+	archivesName = project.archives_base_name + "-fabric-" + project.minecraft_version
 }
 
 dependencies {
@@ -15,7 +15,6 @@ dependencies {
 
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
 }
 
 processResources {
