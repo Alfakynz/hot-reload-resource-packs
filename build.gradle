@@ -7,11 +7,11 @@ version = project.mod_version
 group = project.maven_group
 
 base {
-	archivesName = project.archives_base_name + "-fabric"
+	archivesName = project.archives_base_name + "-fabric-" + project.minecraft_version
 }
 
 repositories {
-
+	maven { url "https://api.modrinth.com/maven" }
 }
 
 dependencies {
@@ -20,7 +20,9 @@ dependencies {
 
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
+
+	modImplementation "maven.modrinth:fabric-language-kotlin:${project.fabric_language_kotlin_version}"
+	modImplementation "maven.modrinth:resourcify:${project.resourcify_version}"
 }
 
 processResources {
