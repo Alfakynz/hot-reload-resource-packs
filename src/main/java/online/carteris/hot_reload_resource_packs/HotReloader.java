@@ -1,6 +1,7 @@
 package online.carteris.hot_reload_resource_packs;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -12,6 +13,8 @@ public class HotReloader extends Thread {
     static Logger logger;
     static Path resource_packs_path;
     static long recent_ping;
+    public static long lastResourcifyCloseTime = 0;
+    private static final long RESOURCIFY_COOLDOWN_MS = 3000;
 
     public void run() {
         logger.info("Watching for changes in {}", resource_packs_path);
@@ -72,7 +75,8 @@ public class HotReloader extends Thread {
 
             if (reload) {
                 Minecraft mc = Minecraft.getInstance();
-                if (mc != null) {
+                boolean resourcifyRecentlyOpen = (System.currentTimeMillis() - lastResourcifyCloseTime) < RESOURCIFY_COOLDOWN_MS;
+                if (!isResourcifyScreen(mc.screen) && !resourcifyRecentlyOpen) {
                     mc.reloadResourcePacks();
                 } else {
                     logger.warn("Minecraft client not ready yet, skipping reload");
@@ -83,6 +87,14 @@ public class HotReloader extends Thread {
             logger.error("Got interrupted while trying to wait for file changes");
             throw new RuntimeException(e);
         }
+    }
+
+    static boolean isResourcifyScreen(Screen screen) {
+        if (screen == null) return false;
+        String name = screen.getClass().getName();
+        return name.equals("dev.dediamondpro.resourcify.gui.projectpage.ProjectScreen")
+                || name.equals("dev.dediamondpro.resourcify.gui.browsepage.BrowseScreen")
+                || name.equals("dev.dediamondpro.resourcify.gui.update.UpdateGui");
     }
 
     void handleFileEvent(WatchService watch_service, WatchKey watch_key, WatchEvent<?> event) {
