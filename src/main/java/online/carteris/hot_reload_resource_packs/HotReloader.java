@@ -16,7 +16,7 @@ public class HotReloader extends Thread {
     static Path resource_packs_path;
     static long recent_ping;
     public static long lastResourcifyCloseTime = 0;
-    private static final long RESOURCIFY_COOLDOWN_MS = 5000;
+    private static final long RESOURCIFY_COOLDOWN_MS = 3000;
 
     public void run() {
         logger.info("Watching for changes in {}", resource_packs_path);
