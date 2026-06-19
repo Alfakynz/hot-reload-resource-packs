@@ -76,7 +76,7 @@ public class HotReloader extends Thread {
             if (reload) {
                 Minecraft mc = Minecraft.getInstance();
                 boolean resourcifyRecentlyOpen = (System.currentTimeMillis() - lastResourcifyCloseTime) < RESOURCIFY_COOLDOWN_MS;
-                if (!isResourcifyScreen(mc.screen) && !resourcifyRecentlyOpen) {
+                if (!isResourcifyScreen(mc.gui.screen()) && !resourcifyRecentlyOpen) {
                     mc.reloadResourcePacks();
                 } else {
                     logger.warn("Minecraft client not ready yet, skipping reload");
