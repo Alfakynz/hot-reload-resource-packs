@@ -44,7 +44,7 @@
 | 26.2.x    | ✅     | ❌    | ✅       | ❌    |
 
 Fabric >= 0.13.0 / 0.18.4 <br />
-NeoForge >= 21.1.219 / 26.1.0.1-beta <br />
+NeoForge >= 21.1.219 / 26.1.0.1-beta / 26.2.0.1-beta <br />
 Forge >= 47.0.19
 
 # ⬇️ Installation
