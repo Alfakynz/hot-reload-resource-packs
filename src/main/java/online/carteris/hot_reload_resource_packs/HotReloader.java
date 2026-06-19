@@ -79,7 +79,7 @@ public class HotReloader extends Thread {
                 boolean resourcifyRecentlyOpen =
                         (System.currentTimeMillis() - lastResourcifyCloseTime) < RESOURCIFY_COOLDOWN_MS;
 
-                if (!isResourcifyScreen(minecraft_client.screen) && !resourcifyRecentlyOpen) {
+                if (!isResourcifyScreen(minecraft_client.gui.screen()) && !resourcifyRecentlyOpen) {
                     minecraft_client.reloadResourcePacks();
                 }
             }
@@ -136,7 +136,7 @@ public class HotReloader extends Thread {
         super();
 
         ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
-            if (isResourcifyScreen(client.screen)) {
+            if (isResourcifyScreen(client.gui.screen())) {
                 lastResourcifyCloseTime = System.currentTimeMillis();
             }
         });
