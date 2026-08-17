@@ -11,7 +11,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 public class HotReloader extends Thread {
     static Logger logger;
-    static Minecraft minecraft_client;
     static Path resource_packs_path;
     static long recent_ping;
     public static long lastResourcifyCloseTime = 0;
@@ -32,11 +31,11 @@ public class HotReloader extends Thread {
 
             // recursively visit the preexisting directories and watch them for changes too
             Files.walkFileTree(resource_packs_path, new SimpleFileVisitor<>() {
-               @Override
-               public @NotNull FileVisitResult preVisitDirectory(@NotNull Path dir, @NotNull BasicFileAttributes attrs) {
-                   registerPath(watch_service, dir);
-                   return FileVisitResult.CONTINUE;
-               }
+                @Override
+                public @NotNull FileVisitResult preVisitDirectory(@NotNull Path dir, @NotNull BasicFileAttributes attrs) {
+                    registerPath(watch_service, dir);
+                    return FileVisitResult.CONTINUE;
+                }
             });
 
             // watch for file events until the thread is interrupted (until the game closes)
@@ -75,11 +74,12 @@ public class HotReloader extends Thread {
             recent_ping = System.currentTimeMillis();
 
             if (reload) {
-                boolean resourcifyRecentlyOpen =
-                        (System.currentTimeMillis() - lastResourcifyCloseTime) < RESOURCIFY_COOLDOWN_MS;
-
-                if (!isResourcifyScreen(minecraft_client.screen) && !resourcifyRecentlyOpen) {
-                    minecraft_client.reloadResourcePacks();
+                Minecraft mc = Minecraft.getInstance();
+                boolean resourcifyRecentlyOpen = (System.currentTimeMillis() - lastResourcifyCloseTime) < RESOURCIFY_COOLDOWN_MS;
+                if (!isResourcifyScreen(mc.screen) && !resourcifyRecentlyOpen) {
+                    mc.reloadResourcePacks();
+                } else {
+                    logger.warn("Minecraft client not ready yet, skipping reload");
                 }
             }
 
@@ -113,7 +113,7 @@ public class HotReloader extends Thread {
 
     void registerPath(WatchService watch_service, Path path) {
         try {
-            // Ensure resourcepacks path exists by creating it if it doesn't. 
+            // Ensure resourcepacks path exists by creating it if it doesn't.
             if (!Files.exists(path)) {
                 Files.createDirectories(path);
                 logger.info("Created missing resourcepacks directory: {}", path);
@@ -131,10 +131,8 @@ public class HotReloader extends Thread {
         }
     }
 
-    public HotReloader(Minecraft minecraft_client, Logger logger, Path resource_packs_path) {
+    public HotReloader(Logger logger, Path resource_packs_path) {
         super();
-
-        HotReloader.minecraft_client = minecraft_client;
         HotReloader.resource_packs_path = resource_packs_path;
         HotReloader.logger = logger;
     }
